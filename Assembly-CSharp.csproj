@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\My Scripts\Player1Move.cs" />
+    <Compile Include="Assets\My Scripts\Player1Actions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\My assets\shadows.shader" />
