@@ -9,6 +9,8 @@ public class Player1Move : MonoBehaviour
     public float WalkSpeed = 0.1f;
     private bool IsJumping = false;
     private AnimatorStateInfo Player1Layer0;
+    private bool CanWalkLeft = true;
+    private bool CanWalkRight = true;
     
     // Start is called before the first frame update
     void Start()
@@ -20,20 +22,43 @@ public class Player1Move : MonoBehaviour
     void Update()
     {
         Player1Layer0 = Anim.GetCurrentAnimatorStateInfo(0);
+        Vector3 ScreenBound = Camera.main.WorldToScreenPoint(this.transform.position);
 
-        if (Player1Layer0.IsTag("Motion")) 
-         { 
-         if (Input.GetAxis("Horizontal") > 0)
+        if(ScreenBound.x > Screen.width - 200)
         {
+            CanWalkRight = false;
+        }
+
+        if (ScreenBound.x < 200)
+        {
+            CanWalkLeft = false;
+        }
+
+        else if(ScreenBound.x > 200 && ScreenBound.x < Screen.width - 200)
+        {
+            CanWalkRight = true;
+            CanWalkLeft = true;
+        }
+
+
+
+        if (Player1Layer0.IsTag("Motion")) { 
+         if (Input.GetAxis("Horizontal") > 0){
+          if(CanWalkRight == true){
+
             Anim.SetBool("Foward", true);
             
             transform.Translate(WalkSpeed, 0, 0);
-        }
+          }
+         }
 
         if (Input.GetAxis("Horizontal")  < 0)
         {
-            Anim.SetBool("Backward", true);
-            transform.Translate(-WalkSpeed, 0, 0);
+           if(CanWalkLeft == true)
+                {
+                    Anim.SetBool("Backward", true);
+                    transform.Translate(-WalkSpeed, 0, 0);
+                }
         }
 
          }
