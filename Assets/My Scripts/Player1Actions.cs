@@ -21,6 +21,7 @@ public class Player1Actions : MonoBehaviour
 
     public void JumpUp()
     {
-        Player1.transform.Translate(0, JumpSpeed, 0);
+       Player1.transform.Translate(0, JumpSpeed, 0);
+       
     }
 }

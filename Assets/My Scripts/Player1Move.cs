@@ -1,100 +1,169 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player1Move : MonoBehaviour
 {
-
-    private Animator Anim;
-    public float WalkSpeed = 0.1f;
+private Animator Anim;
+    public float WalkSpeed = 0.07f;
     private bool IsJumping = false;
     private AnimatorStateInfo Player1Layer0;
     private bool CanWalkLeft = true;
     private bool CanWalkRight = true;
-    
-    // Start is called before the first frame update
-    void Start()
+    public GameObject Player1;
+    public GameObject Oppenent;
+    private Vector3 OppPosition;
+    private bool FacingLeft = false;
+    private bool FacingRight = true;
+
+
+    private void Start()
     {
+
         Anim = GetComponentInChildren<Animator>();
+    
+    
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //listen to the animator
         Player1Layer0 = Anim.GetCurrentAnimatorStateInfo(0);
-        Vector3 ScreenBound = Camera.main.WorldToScreenPoint(this.transform.position);
 
-        if(ScreenBound.x > Screen.width - 200)
+        //cannot exit screen
+        Vector3 ScreenBounds = Camera.main.WorldToScreenPoint(this.transform.position);
+
+        if(ScreenBounds.x > Screen.width - 200)
         {
             CanWalkRight = false;
         }
-
-        if (ScreenBound.x < 200)
+        
+        if(ScreenBounds.x < 200)
         {
             CanWalkLeft = false;
         }
 
-        else if(ScreenBound.x > 200 && ScreenBound.x < Screen.width - 200)
+        else if(ScreenBounds.x > 200 && ScreenBounds.x < Screen.width - 200)
         {
             CanWalkRight = true;
             CanWalkLeft = true;
         }
 
 
+        //get the opponent position
 
-        if (Player1Layer0.IsTag("Motion")) { 
-         if (Input.GetAxis("Horizontal") > 0){
-          if(CanWalkRight == true){
+        OppPosition = Oppenent.transform.position;
 
-            Anim.SetBool("Foward", true);
-            
-            transform.Translate(WalkSpeed, 0, 0);
-          }
-         }
+        //Face left o right of opponent
 
-        if (Input.GetAxis("Horizontal")  < 0)
+        if(OppPosition.x > Player1.transform.position.x)
         {
-           if(CanWalkLeft == true)
-                {
-                    Anim.SetBool("Backward", true);
-                    transform.Translate(-WalkSpeed, 0, 0);
-                }
+            StartCoroutine(FaceLeft());
         }
 
-         }
+if(OppPosition.x < Player1.transform.position.x)
+        {
+
+            StartCoroutine(FaceRight());
+        }
+
+
+    
+        //Caminando dercha y izquierda
+        if (Player1Layer0.IsTag("Motion"))
+        {
+
+        
+        if (Input.GetAxis("Horizontal") > 0)
+        {
+            if(CanWalkRight == true)
+            {            
+             Anim.SetBool("Forward", true);
+             transform.Translate(WalkSpeed, 0, 0);
+            }
+        
+            }
+
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            if(CanWalkLeft == true)
+            {
+            Anim.SetBool("Backward", true);
+            transform.Translate(-WalkSpeed, 0, 0);
+
+            }
+        }
+
+    }
 
 
         if (Input.GetAxis("Horizontal") == 0)
         {
-            Anim.SetBool("Foward", false);
+            Anim.SetBool("Forward", false);
             Anim.SetBool("Backward", false);
         }
-
+        //salto 
         if (Input.GetAxis("Vertical") > 0)
         {
-            /*if(IsJumping == false){ IsJumping = true;  Anim.SetTrigger("Jump"); StartCoroutine(JumpPause()); } */
-            Anim.SetBool("Jumps", true);
-           
-        }
+            if (IsJumping == false)
+            {
+                IsJumping = true;
+            Anim.SetBool("Jump", true);
+                StartCoroutine(JumpPause());
 
+            }
+            
+        }
         if (Input.GetAxis("Vertical") < 0)
         {
             Anim.SetBool("Crouch", true);
+            
         }
-
         if (Input.GetAxis("Vertical") == 0)
         {
-              Anim.SetBool("Crouch", false);
-            Anim.SetBool("Jumps", false);
+            Anim.SetBool("Jump", false);
+            Anim.SetBool("Crouch", false);
+        }
+
+    }
+
+
+    IEnumerator JumpPause()
+    {
+        yield return new WaitForSeconds(0.15f);
+        IsJumping = false;
+    }
+
+    IEnumerator FaceLeft()
+    {
+       if(FacingLeft == true)
+        {
+            FacingLeft = false;
+            FacingRight = true;
+            yield return new WaitForSeconds(0.15f);
+            Player1.transform.Rotate(0, 180 , 0);
         }
 
 
     }
 
-IEnumerator JumpPause()
+    IEnumerator FaceRight()
     {
-        yield return new WaitForSeconds(1.0f);
-        IsJumping = false;
+
+        if (FacingRight == true)
+        {
+            FacingRight = false;
+            FacingLeft = true;
+            yield return new WaitForSeconds(0.15f);
+            Player1.transform.Rotate(0, -180, 0);
+        }
+
+
+
+
     }
+
+
 
 }
