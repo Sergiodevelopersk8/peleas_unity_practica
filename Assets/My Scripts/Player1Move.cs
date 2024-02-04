@@ -22,8 +22,9 @@ private Animator Anim;
     {
 
         Anim = GetComponentInChildren<Animator>();
-    
-    
+        StartCoroutine(FaceRight());
+
+
     }
 
     void Update()
@@ -143,6 +144,7 @@ if(OppPosition.x < Player1.transform.position.x)
             FacingRight = true;
             yield return new WaitForSeconds(0.15f);
             Player1.transform.Rotate(0, 180 , 0);
+            Anim.SetLayerWeight(1, 0);
         }
 
 
@@ -157,6 +159,7 @@ if(OppPosition.x < Player1.transform.position.x)
             FacingLeft = true;
             yield return new WaitForSeconds(0.15f);
             Player1.transform.Rotate(0, -180, 0);
+            Anim.SetLayerWeight(1, 1);
         }
 
 
