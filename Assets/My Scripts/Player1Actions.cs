@@ -8,7 +8,7 @@ public class Player1Actions : MonoBehaviour
     public GameObject Player1;
     private Animator Anim;
     private AnimatorStateInfo Player1Layer0;
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +25,6 @@ public class Player1Actions : MonoBehaviour
 
         if (Player1Layer0.IsTag("Motion"))
         {
-
-        
 
 
         if (Input.GetButton("Fire1"))
@@ -46,6 +44,12 @@ public class Player1Actions : MonoBehaviour
             Anim.SetTrigger("HeavyKick");
         }
 
+            if (Input.GetButton("Fire5"))
+            {
+                Anim.SetTrigger("HeavyKick");
+            }
+
+
         }
         //
         if (Player1Layer0.IsTag("Crouching"))
@@ -58,9 +62,11 @@ public class Player1Actions : MonoBehaviour
 
         //aerial attack
 
+
+
         if (Player1Layer0.IsTag("Jumping"))
         {
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButton("Jump"))
             {
                 Anim.SetTrigger("HeavyKick");
             }

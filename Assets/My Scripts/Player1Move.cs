@@ -111,6 +111,7 @@ if(OppPosition.x < Player1.transform.position.x)
             {
                 IsJumping = true;
             Anim.SetBool("Jump", true);
+                Anim.SetTrigger("Salto");
                 StartCoroutine(JumpPause());
 
             }
@@ -122,7 +123,7 @@ if(OppPosition.x < Player1.transform.position.x)
             
         }
         if (Input.GetAxis("Vertical") == 0)
-        {
+        {  
             Anim.SetBool("Jump", false);
             Anim.SetBool("Crouch", false);
         }
