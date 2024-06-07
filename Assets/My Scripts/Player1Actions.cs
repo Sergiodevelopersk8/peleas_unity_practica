@@ -8,7 +8,9 @@ public class Player1Actions : MonoBehaviour
     public GameObject Player1;
     private Animator Anim;
     private AnimatorStateInfo Player1Layer0;
-   
+    public float PunchMoveAmt = 0.2f;
+    private bool HeavyMoving = false;
+    public float PunchSlideAmt = 2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,23 @@ public class Player1Actions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(HeavyMoving == true)
+        {
+            if (Player1Move.FacingRight == true)
+            {
+             Player1.transform.Translate(PunchSlideAmt * Time.deltaTime, 0, 0);
+
+            }
+
+            if(Player1Move.FacingLeft == true)
+            {
+                Player1.transform.Translate(-PunchSlideAmt * Time.deltaTime, 0, 0);
+
+            }
+
+
+
+        }
         Player1Layer0 = Anim.GetCurrentAnimatorStateInfo(0);
 
 
@@ -81,6 +100,26 @@ public class Player1Actions : MonoBehaviour
        Player1.transform.Translate(0, JumpSpeed, 0);
        
     }
+    public void HeavyPunchMove()
+    {
+  
+        Player1.transform.Translate(PunchMoveAmt * Time.deltaTime, 0, 0);
+        
+
+        // Player1.transform.Translate(0, 0, 0);
+        
+        
+    }
+
+
+    public void HeavyMove()
+    {
+        StartCoroutine(PunchSlide());
+       
+    }
+
+
+
     public void FlipUp()
     {
        Player1.transform.Translate(0, JumpSpeed, 0);
@@ -93,7 +132,12 @@ public class Player1Actions : MonoBehaviour
         Player1.transform.Translate(-0.1f, 0,0);
     }
 
-
+    IEnumerator PunchSlide()
+    {
+        HeavyMoving = true;
+        yield return new WaitForSeconds(0.1f);
+        HeavyMoving = false;
+    }
 
 
 }

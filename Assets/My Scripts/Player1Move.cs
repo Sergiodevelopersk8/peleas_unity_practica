@@ -14,8 +14,8 @@ private Animator Anim;
     public GameObject Player1;
     public GameObject Oppenent;
     private Vector3 OppPosition;
-    private bool FacingLeft = false;
-    private bool FacingRight = true;
+    public static  bool FacingLeft = false;
+    public static bool FacingRight = true;
 
 
     private void Start()
