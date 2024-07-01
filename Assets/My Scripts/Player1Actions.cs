@@ -11,10 +11,16 @@ public class Player1Actions : MonoBehaviour
     public float PunchMoveAmt = 0.2f;
     private bool HeavyMoving = false;
     public float PunchSlideAmt = 2f;
+    private AudioSource MyPlayer;
+    public AudioClip PunchWoosh;
+    public AudioClip KickWoosh;
+
+
     // Start is called before the first frame update
     void Start()
     {
         Anim = GetComponent<Animator>();
+        MyPlayer = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -68,8 +74,25 @@ public class Player1Actions : MonoBehaviour
                 Anim.SetTrigger("HeavyKick");
             }
 
+            if (Input.GetButtonDown("Block"))
+            {
+                Anim.SetTrigger("BlockOn");
+            }
+
+          
+
 
         }
+
+        if (Player1Layer0.IsTag("Block"))
+        {
+            if (Input.GetButtonUp("Block"))
+            {
+                Anim.SetTrigger("BlockOff");
+            }
+        }
+
+
         //
         if (Player1Layer0.IsTag("Crouching"))
         {
@@ -131,6 +154,22 @@ public class Player1Actions : MonoBehaviour
        Player1.transform.Translate(0, JumpSpeed, 0);
         Player1.transform.Translate(-0.1f, 0,0);
     }
+
+    public void PunchWooshSound()
+    {
+        MyPlayer.clip = PunchWoosh;
+        MyPlayer.Play();
+    }
+
+
+
+    public void KickWooshSound()
+    {
+        MyPlayer.clip = KickWoosh;
+        MyPlayer.Play();
+    }
+
+
 
     IEnumerator PunchSlide()
     {

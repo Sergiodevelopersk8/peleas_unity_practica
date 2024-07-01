@@ -56,10 +56,11 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\My Scripts\Player1Move.cs" />
     <Compile Include="Assets\My Scripts\Player1Actions.cs" />
+    <Compile Include="Assets\My Scripts\Player1Move.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\My assets\Sounds\Sounds used fight game.txt" />
     <None Include="Assets\My assets\shadows.shader" />
   </ItemGroup>
   <ItemGroup>
