@@ -118,6 +118,9 @@ public class Player1Actions : MonoBehaviour
 
     }
 
+
+
+
     public void JumpUp()
     {
        Player1.transform.Translate(0, JumpSpeed, 0);
@@ -160,7 +163,7 @@ public class Player1Actions : MonoBehaviour
         MyPlayer.clip = PunchWoosh;
         MyPlayer.Play();
     }
-
+    
 
 
     public void KickWooshSound()

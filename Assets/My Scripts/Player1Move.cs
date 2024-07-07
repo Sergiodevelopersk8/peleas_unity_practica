@@ -16,14 +16,18 @@ private Animator Anim;
     private Vector3 OppPosition;
     public static  bool FacingLeft = false;
     public static bool FacingRight = true;
-
+    public AudioClip LightPunch;
+    public AudioClip HeavyPunch;
+    public AudioClip LightKick;
+    public AudioClip HeavyKick;
+    private AudioSource MyPlayer;
 
     private void Start()
     {
 
         Anim = GetComponentInChildren<Animator>();
         StartCoroutine(FaceRight());
-
+        MyPlayer = GetComponentInChildren<AudioSource>();
 
     }
 
@@ -130,6 +134,46 @@ if(OppPosition.x < Player1.transform.position.x)
 
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+    
+        if (other.gameObject.CompareTag("FistLight"))
+        {
+        Anim.SetTrigger("HeadReact");
+            MyPlayer.clip = LightPunch;
+            MyPlayer.Play();
+
+        }
+        
+        if (other.gameObject.CompareTag("FistHeavy"))
+        {
+        Anim.SetTrigger("BigReact");
+            MyPlayer.clip = HeavyPunch;
+            MyPlayer.Play();
+
+        }
+
+        if (other.gameObject.CompareTag("KickHeavy"))
+        {
+        Anim.SetTrigger("BigReact");
+            MyPlayer.clip = HeavyKick;
+            MyPlayer.Play();
+
+        }
+        if (other.gameObject.CompareTag("KickLight"))
+        {
+        Anim.SetTrigger("HeadReact");
+            MyPlayer.clip = LightKick;
+            MyPlayer.Play();
+
+        }
+
+
+
+
+
+    }
 
     IEnumerator JumpPause()
     {
