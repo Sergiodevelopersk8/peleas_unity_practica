@@ -14,7 +14,7 @@ public class Player1Actions : MonoBehaviour
     private AudioSource MyPlayer;
     public AudioClip PunchWoosh;
     public AudioClip KickWoosh;
-
+    public static bool Hits = false;
 
     // Start is called before the first frame update
     void Start()
@@ -52,25 +52,31 @@ public class Player1Actions : MonoBehaviour
         {
 
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
-            Anim.SetTrigger("LightPunch");
+
+                /*fire 1 -> q*/
+                Anim.SetTrigger("LightPunch");
         }
-        if (Input.GetButton("Fire2"))
+        if (Input.GetButtonDown("Fire2"))
         {
-            Anim.SetTrigger("HeavyPunch");
+                /*fire 2 -> r*/
+                Anim.SetTrigger("HeavyPunch");
         }
-        if (Input.GetButton("Fire3"))
+        if (Input.GetButtonDown("Fire3"))
         {
-            Anim.SetTrigger("LightKick");
+                /*fire 3 -> t*/
+                Anim.SetTrigger("LightKick");
         }
-        if (Input.GetButton("Fire4"))
+        if (Input.GetButtonDown("Fire4"))
         {
-            Anim.SetTrigger("HeavyKick");
+                /*fire 4 -> k*/
+                Anim.SetTrigger("HeavyKick");
         }
 
-            if (Input.GetButton("Fire5"))
+            if (Input.GetButtonDown("Fire5"))
             {
+                /*fire 5 -> n*/
                 Anim.SetTrigger("HeavyKick");
             }
 
