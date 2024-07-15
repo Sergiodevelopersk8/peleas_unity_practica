@@ -57,7 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\My Scripts\Player1Actions.cs" />
+    <Compile Include="Assets\My Scripts\Player2Move.cs" />
     <Compile Include="Assets\My Scripts\Player1Move.cs" />
+    <Compile Include="Assets\My Scripts\Player2Actions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\My assets\Sounds\Sounds used fight game.txt" />

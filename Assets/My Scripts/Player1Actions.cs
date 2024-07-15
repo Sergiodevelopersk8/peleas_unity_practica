@@ -46,37 +46,38 @@ public class Player1Actions : MonoBehaviour
         Player1Layer0 = Anim.GetCurrentAnimatorStateInfo(0);
 
 
+
         //STADING ATTACK
 
         if (Player1Layer0.IsTag("Motion"))
         {
 
 
-        if (Input.GetButtonDown("Fire1"))
-        {
+            if (Input.GetButtonDown("Fire1"))
+            {
 
-                /*fire 1 -> q*/
+                /*fire 1 -> a*/
                 Anim.SetTrigger("LightPunch");
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-                /*fire 2 -> r*/
+            }
+            if (Input.GetButtonDown("Fire2"))
+            {
+                /*fire 2 -> s*/
                 Anim.SetTrigger("HeavyPunch");
-        }
-        if (Input.GetButtonDown("Fire3"))
-        {
-                /*fire 3 -> t*/
+            }
+            if (Input.GetButtonDown("Fire3"))
+            {
+                /*fire 3 -> d*/
                 Anim.SetTrigger("LightKick");
-        }
-        if (Input.GetButtonDown("Fire4"))
-        {
-                /*fire 4 -> k*/
+            }
+            if (Input.GetButtonDown("Fire4"))
+            {
+                /*fire 4 -> z*/
                 Anim.SetTrigger("HeavyKick");
-        }
+            }
 
             if (Input.GetButtonDown("Fire5"))
             {
-                /*fire 5 -> n*/
+                /*fire 5 -> x*/
                 Anim.SetTrigger("HeavyKick");
             }
 
@@ -85,11 +86,10 @@ public class Player1Actions : MonoBehaviour
                 Anim.SetTrigger("BlockOn");
             }
 
-          
+
 
 
         }
-
         if (Player1Layer0.IsTag("Block"))
         {
             if (Input.GetButtonUp("Block"))
