@@ -80,22 +80,24 @@ if(OppPosition.x < Player1.transform.position.x)
         {
 
         
-        if (Input.GetAxis("HorizontalP2") > 0)
+        if (Input.GetAxis("HorizontalP2") < 0)
         {
             if(CanWalkRight == true)
             {            
-             Anim.SetBool("Forward", true);
+               
+                    Anim.SetBool("Backward", true);
+                    
              transform.Translate(WalkSpeed, 0, 0);
             }
         
             }
 
-        if (Input.GetAxis("HorizontalP2") < 0)
+        if (Input.GetAxis("HorizontalP2") > 0)
         {
             if(CanWalkLeft == true)
             {
-            Anim.SetBool("Backward", true);
-            transform.Translate(-WalkSpeed, 0, 0);
+                    Anim.SetBool("Forward", true);
+                    transform.Translate(-WalkSpeed, 0, 0);
 
             }
         }

@@ -74,14 +74,10 @@ public class Player2Actions : MonoBehaviour
                 Anim.SetTrigger("HeavyKick");
         }
 
-            if (Input.GetButtonDown("Fire5P2"))
+            
+            if (Input.GetButtonDown("BlockP2"))
             {
-                /*fire 5 -> m*/
-                Anim.SetTrigger("HeavyKick");
-            }
-
-            if (Input.GetButtonDown("Block"))
-            {
+                Debug.Log("block activado player2");
                 Anim.SetTrigger("BlockOn");
             }
 
@@ -92,8 +88,9 @@ public class Player2Actions : MonoBehaviour
 
         if (Player1Layer0.IsTag("Block"))
         {
-            if (Input.GetButtonUp("Block"))
+            if (Input.GetButtonUp("BlockP2"))
             {
+                Debug.Log("block desactivado player2");
                 Anim.SetTrigger("BlockOff");
             }
         }
@@ -102,7 +99,7 @@ public class Player2Actions : MonoBehaviour
         //
         if (Player1Layer0.IsTag("Crouching"))
         {
-            if (Input.GetButtonDown("Fire3"))
+            if (Input.GetButtonDown("Fire3P2"))
             {
                 Anim.SetTrigger("LightKick");
             }
