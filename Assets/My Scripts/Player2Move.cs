@@ -111,7 +111,7 @@ if(OppPosition.x < Player1.transform.position.x)
             Anim.SetBool("Backward", false);
         }
         //salto 
-        if (Input.GetAxis("VerticalP2") > 0)
+        if (Input.GetAxis("VerticalP2") < 0)
         {
             if (IsJumping == false)
             {
@@ -123,7 +123,7 @@ if(OppPosition.x < Player1.transform.position.x)
             }
             
         }
-        if (Input.GetAxis("VerticalP2") < 0)
+        if (Input.GetAxis("VerticalP2") > 0)
         {
             Anim.SetBool("Crouch", true);
             
