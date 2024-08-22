@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -74,14 +75,11 @@ public class Player2Actions : MonoBehaviour
                 Anim.SetTrigger("HeavyKick");
         }
 
-            
+            /*BlockP2-> m*/
             if (Input.GetButtonDown("BlockP2"))
             {
-                Debug.Log("block activado player2");
                 Anim.SetTrigger("BlockOn");
             }
-
-          
 
 
         }
@@ -90,7 +88,6 @@ public class Player2Actions : MonoBehaviour
         {
             if (Input.GetButtonUp("BlockP2"))
             {
-                Debug.Log("block desactivado player2");
                 Anim.SetTrigger("BlockOff");
             }
         }
